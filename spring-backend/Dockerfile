@@ -1,10 +1,9 @@
-FROM node:14-alpine as build
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-FROM nginx:alpine
-COPY --from=build /usr/src/app/dist/angular-frontend /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx","-g", "daemon off;"]
+FROM ubuntu:latest
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk maven && \
+    rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY . /app
+RUN mvn clean package -Dmaven.test.skip=true
+EXPOSE 8080
+CMD ["java", "-jar", "target/spring-backend-v1.jar"]
