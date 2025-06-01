@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+   apiBaseUrl: 'http://spring-backend:8080/api/v1'
+
 };
