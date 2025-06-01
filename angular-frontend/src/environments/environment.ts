@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+   apiBaseUrl: 'http://spring-backend:8080/api/v1'
 };
 
 /*
